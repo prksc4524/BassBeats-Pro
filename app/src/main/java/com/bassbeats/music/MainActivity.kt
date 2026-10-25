@@ -195,7 +195,7 @@ class MainActivity : Activity() {
     private fun next() { if (songs.isNotEmpty()) play(if (current + 1 >= songs.size) 0 else current + 1) }
     private fun previous() {
         val p = player
-        if (p != null && try { p.currentPosition > 3000 } catch (_: Exception) {}) { p.seekTo(0); return }
+        if (p != null && (try { p.currentPosition > 3000 } catch (_: Exception) { false })) {
         if (songs.isNotEmpty()) play(if (current <= 0) songs.lastIndex else current - 1)
     }
     private fun initEffects() {
